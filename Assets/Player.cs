@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
         InputMovement();
 	}
 
+    // Bla bla
     void InputMovement()
     {
         Vector2 curVel = rb.velocity;
