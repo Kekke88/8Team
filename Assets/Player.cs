@@ -4,23 +4,28 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public float speed = 10f;
-    private Rigidbody2D rb;
+    private Rigidbody2D playerRigidBody;
+    private PhotonView punView;
 
 	// Use this for initialization
 	void Start () {
-        rb = GetComponent<Rigidbody2D>();
+        playerRigidBody = GetComponent<Rigidbody2D>();
+        punView = GetComponent<PhotonView>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        InputMovement();
+        if(punView.isMine)
+        {
+            InputMovement();
+        }
 	}
 
     // Bla bla
     void InputMovement()
     {
-        Vector2 curVel = rb.velocity;
+        Vector2 curVel = playerRigidBody.velocity;
         curVel.x = (float)(Input.GetAxis("Horizontal") * speed);
-        rb.velocity = curVel;
+        playerRigidBody.velocity = curVel;
     }
 }
