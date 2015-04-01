@@ -30,7 +30,7 @@ public class NetworkManager : MonoBehaviour {
 		else if (PhotonNetwork.room == null)
 		{
 			// Create Room
-			if (GUI.Button(new Rect(100, 100, 250, 100), "Start Server"))
+			if (GUI.Button(new Rect(350, 0, 150, 25), "Start Server"))
 				PhotonNetwork.CreateRoom(roomName + Guid.NewGuid().ToString("N"), true, true, 5);
 			
 			// Join Room

@@ -5,7 +5,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 
-    public float speed = 10f;
+    public float speed;
     private Rigidbody2D playerRigidBody;
     private PhotonView punView;
     private bool isGrounded;
@@ -17,7 +17,6 @@ public class Player : MonoBehaviour {
         punView = GetComponent<PhotonView>();
 
 	}
-	
 	// Update is called once per frame
 	void Update () {
         if(punView.isMine)
@@ -25,7 +24,6 @@ public class Player : MonoBehaviour {
             InputMovement();
         }
 	}
-
     // Bla bla
     void InputMovement()
     {
@@ -35,11 +33,10 @@ public class Player : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            playerRigidBody.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+            playerRigidBody.AddForce(new Vector2(0, 14), ForceMode2D.Impulse);
             isGrounded = false;
         } 
     }
-
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Ground")
@@ -47,6 +44,4 @@ public class Player : MonoBehaviour {
             isGrounded = true;
         }
     }
-
-
 }
