@@ -52,7 +52,7 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnJoinedRoom()
 	{
-        PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(484, 449, 0), Quaternion.identity,
+        PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0, 20, 0), Quaternion.identity,
             0);
 
 		Debug.Log("Connected to Room");
