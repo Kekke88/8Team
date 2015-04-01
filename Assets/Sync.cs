@@ -8,7 +8,7 @@ public class Sync : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        punView.GetComponent<PhotonView>();
+        punView = GetComponent<PhotonView>();
 	}
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
