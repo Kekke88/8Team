@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Player : MonoBehaviour {
+
 
     public float speed = 10f;
     private Rigidbody2D playerRigidBody;
     private PhotonView punView;
     private bool isGrounded;
 
+
 	// Use this for initialization
 	void Start () {
         playerRigidBody = GetComponent<Rigidbody2D>();
         punView = GetComponent<PhotonView>();
+
 	}
 	
 	// Update is called once per frame
@@ -43,4 +47,6 @@ public class Player : MonoBehaviour {
             isGrounded = true;
         }
     }
+
+
 }
