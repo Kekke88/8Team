@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
     public float speed = 10f;
     private Rigidbody2D playerRigidBody;
     private PhotonView punView;
+    private bool isGrounded;
 
 	// Use this for initialization
 	void Start () {
@@ -27,5 +28,19 @@ public class Player : MonoBehaviour {
         Vector2 curVel = playerRigidBody.velocity;
         curVel.x = (float)(Input.GetAxis("Horizontal") * speed);
         playerRigidBody.velocity = curVel;
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            playerRigidBody.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+            isGrounded = false;
+        } 
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
     }
 }
