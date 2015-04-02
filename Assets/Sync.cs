@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class Sync : MonoBehaviour {
     private Vector3 latestCorrectPos;
@@ -7,8 +8,8 @@ public class Sync : MonoBehaviour {
     private float fraction;
     PhotonView punView;
 
-	// Use this for initialization
-	void Start () {
+    void Awake()
+    {
         punView = GetComponent<PhotonView>();
 
         if (punView.isMine)
@@ -18,7 +19,7 @@ public class Sync : MonoBehaviour {
 
         latestCorrectPos = transform.position;
         onUpdatePos = transform.position;
-	}
+    }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -37,7 +38,7 @@ public class Sync : MonoBehaviour {
 
             stream.Serialize(ref pos);
             stream.Serialize(ref rot);
-
+            Debug.Log(onUpdatePos + " - " + latestCorrectPos);
             latestCorrectPos = pos;                 // save this to move towards it in FixedUpdate()
             onUpdatePos = transform.localPosition;  // we interpolate from here to latestCorrectPos
             fraction = 0;                           // reset the fraction we alreay moved. see Update()
